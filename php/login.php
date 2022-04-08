@@ -1,6 +1,7 @@
 <?php
     session_start();
     require "connect.php";
+    $uri = $_POST['url'];
     $email =$_POST['email'];
     $pwd =$_POST['password'];
     $pwdMd5 =md5($pwd);
@@ -12,9 +13,8 @@
         $row_data = mysqli_fetch_array($row);
         $_SESSION['email'] = $email;
         $_SESSION['id_tk'] = $row_data['id'];
-        header("Location: /YD-shop");
+        header("Location: $uri");
     }else{
-        header ('Location: /YD-shop');
+        header ("Location: $uri");
     }
-
 ?>

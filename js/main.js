@@ -3,6 +3,9 @@ function showModalLogin() {
     document.getElementById('showModalnotificationCart').style.display = 'none';
     document.getElementById('showModal').style.display = 'flex';
     document.getElementById('showModalLogin').style.display = 'block';
+    document.getElementById('showModalnotificationPay').style.display = 'none';
+    // document.getElementById('showModalnotificationPay').style.display = 'none';
+    
 }
 function closeModalLogin() {
     document.getElementById('showModal').style.display = 'none';
@@ -53,8 +56,10 @@ function showModalCart() {
     document.getElementById('showModal').style.display = 'flex';
     if (email != undefined && email != null && email !="") {
         document.getElementById('showModalCart').style.display = 'block';
+        document.getElementById('showComment').style.display = 'none';
     } else {
         document.getElementById('showModalnotificationCart').style.display = 'block';
+        document.getElementById('showComment').style.display = 'none';
     }
     
     
@@ -71,7 +76,7 @@ function checkComment() {
         document.getElementById('showComment').style.display = 'block';
         document.getElementById('showModalnotificationCart').style.display = 'none';
         document.getElementById('showModalCart').style.display = 'none';
-
+        document.getElementById('showModalLogin').style.display = 'none';
 
         // document.getElementById('showModalCart').style.display = 'none';
         ok = false;
@@ -81,6 +86,7 @@ function checkComment() {
             document.getElementById('showCommentNull').style.display = 'block';
             document.getElementById('showModalnotificationCart').style.display = 'none';
             document.getElementById('showModalCart').style.display = 'none';
+            document.getElementById('showModalLogin').style.display = 'none';
             // document.getElementById('showModalCart').style.display = 'none';
             ok = false;
         } 
@@ -93,6 +99,8 @@ function closeModalCart() {
     document.getElementById('showModal').style.display = 'none';
     document.getElementById('showModalCart').style.display = 'none';
     document.getElementById('showCommentNull').style.display = 'none';
+    document.getElementById('showModalLogin').style.display = 'none';
+    document.getElementById('showModalnotificationPay').style.display = 'none';
 }
 // hiển thị form thanh toán
 
@@ -130,6 +138,7 @@ function closeModalPayinCart() {
     document.getElementById('showModal').style.display = 'none';
     document.getElementById('showModalCart').style.display = 'none';
     document.getElementById('showCommentNull').style.display = 'none';
+    document.getElementById('showModalnotificationPay').style.display = 'none';
 }
 
 // hiển thị form giỏ hàng từ form thang toán
@@ -143,7 +152,7 @@ function showModalCartinPay() {
 
 // xóa sản phẩm khỏi giỏ hàng
 function deleteItem(str) {
-    debugger
+    // debugger
     var id = "cart-"+str;
     if (str.length == 0) {
       document.getElementById(id).style.display ="block";
@@ -162,13 +171,13 @@ function deleteItem(str) {
   }
 
   function insertItem(id) {
-      debugger
+    //   debugsger
       var email = document.getElementById('username').value;
       var url = "./php/cart.php?id='"+id+"'&q='"+email+"'";
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            debugger
+            // debugger
           var result = this.responseText;
           if(result == "success"){
             alert('đã thêm thành công');

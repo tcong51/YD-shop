@@ -389,7 +389,7 @@ if ($result2 = $con->query($sql1)) {
                                 <div class="comment_body-text">Các sản phẩm tương tự</div>
                             </div>
                         </div>
-                        
+
                         <div class="home-product">
                             <div class="grid__row">
                                 <!-- khung của sản phẩm -->
@@ -502,10 +502,10 @@ if ($result2 = $con->query($sql1)) {
                                                                             } ?>" id="username" style="display:none">
                                 </div>
                                 <textarea rows="5" style="resize: none;" placeholder="Viết bình luận..." class="form-control" name="comment" id="comment"></textarea>
-                                                                        </br>
+                                </br>
                                 <button type="submit" class="btn btn--primary">Bình luận</button>
                             </form>
-                                                                        </br>
+                            </br>
                         </div>
                         <div class="comment_body">
                             <div class="comment_body-from">
@@ -733,13 +733,12 @@ if ($result2 = $con->query($sql1)) {
 
             <!-- làm form login  -->
             <div class="auth-form" id="showModalLogin" style="display: none">
-                <div class="auth-form__container">
+                <div class=" auth-form__container">
                     <div class="auth-form__header">
                         <h3 class="auth-form__heading">Đăng nhập</h3>
 
                         <span class="auth-form__switch-btn" onclick="showModalRegisterInLogin()">Đăng ký</span>
                     </div>
-
                     <form method="POST" action="./php/login.php">
                         <div class="auth-form__form">
                             <div class="auth-form__group">
@@ -748,7 +747,9 @@ if ($result2 = $con->query($sql1)) {
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input" name="password" placeholder="Mật khẩu của bạn">
                             </div>
+                            <div>
 
+                            </div>
                         </div>
 
                         <div class="auth-form__aside">
@@ -756,14 +757,14 @@ if ($result2 = $con->query($sql1)) {
                                 <a href="" class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
                                 <span class="auth-form__help-separate"> </span>
                                 <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                                <p><input type="hidden" value="<?php $uri = $_SERVER['REQUEST_URI']; echo $uri; ?>" name="url"></p>
                             </div>
                         </div>
                         <div class="auth-form__controls">
-                            <button class="btn btn--normal auth-form__controls-back" onclick="closeModalLogin()">TRỞ LẠI</button>
+                            <button class="btn btn--normal auth-form__controls-back " onclick="closeModalLogin()">TRỞ LẠI</button>
                             <input type="submit" name="submitLogin" class="btn btn--primary" value="ĐĂNG NHẬP">
                         </div>
                     </form>
-
                 </div>
 
                 <div class="auth-form__socials">
