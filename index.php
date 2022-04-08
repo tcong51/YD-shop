@@ -304,7 +304,6 @@ if ($result2=$con->query($sql1))
                                 <button class="home-filter__btn btn btn--primary"><a href="http://localhost/YD-shop/"  style="text-decoration:none; color:var(--text-color)">Phổ biến</a></button>
                                 <button class="home-filter__btn1 btn"><a href="new.php"  style="text-decoration:none; color:var(--text-color)">Mới nhất</a></button>
                                 <button class="home-filter__btn1 btn"><a href="selling.php"  style="text-decoration:none; color:var(--text-color)">Bán chạy</a></button>
-
                                 <div class="select-input">
                                     <span class="select-input__label">Giá </span>
                                     <i class="select-input__icon fas fa-angle-down"></i>

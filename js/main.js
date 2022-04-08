@@ -57,9 +57,12 @@ function showModalCart() {
     if (email != undefined && email != null && email !="") {
         document.getElementById('showModalCart').style.display = 'block';
         document.getElementById('showComment').style.display = 'none';
+        document.getElementById('showModalPayinCart').style.display = 'none';
+        
     } else {
         document.getElementById('showModalnotificationCart').style.display = 'block';
         document.getElementById('showComment').style.display = 'none';
+        document.getElementById('showModalPayinCart').style.display = 'none';
     }
     
     

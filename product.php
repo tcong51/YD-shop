@@ -413,6 +413,22 @@ if ($result2 = $con->query($sql1)) {
                             LIMIT 0,10";
                                 if ($result3 = $con->query($qr)) {
                                     if ($result3->num_rows > 0) {
+                                        function Stariui($star)
+                                        {  $data = '';
+                                            $starTem = round($star, 1);
+                                            $star_check = round($star);
+                                            if ($starTem - $star_check <= 0.4) {
+                                                for ($i = 0; $i < $star_check; $i++) {
+                                                    $data .=  '<i class="home-product-item__star-gold fas fa-star">';
+                                                }
+                                            } elseif ($starTem - $star_check > 0.4 && $starTem - $star_check <= 0.9) {
+                                                for ($i = 0; $i < $star_check; $i++) {
+                                                    $data .= '<i class="home-product-item__star-gold fas fa-star">';
+                                                }
+                                                $data .= '<i class="fas fa-star"></i>';
+                                            }
+                                            return $data;
+                                        }
                                         while ($row2 = $result3->fetch_assoc()) {
                                             $id = $row2['maSP'];
                                             echo '<div class="grid__column-2-4 ">
@@ -430,16 +446,60 @@ if ($result2 = $con->query($sql1)) {
                                 <?php
                                             echo '<div class="home-product-item__action">
                                                     <span class="home-product-item__like home-product-item__like--liked"> <!-- thêm hoặc bỏ class  "home-product-item__like--liked" để tym empty hoặc fill -->
-                                                        <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                        <i class="home-product-item__like-icon-fill fas fa-heart"></i>
+                                                        <i class="home-product-item__like-icon-fill fas fa-heart" ></i>
                                                     </span>
-                                                    <div class="home-product-item__rating">
+                                                    <div class="home-product-item__rating">';
+                                            
+                                            $star = ($row2['one_star'] * 1 + $row2['second_star'] * 2 + $row2['third_star'] * 3 + $row2['four_star'] * 4 + $row2['five_star'] * 5) / ($row2['one_star']+ $row2['second_star']+ $row2['third_star']+ $row2['four_star']+ $row2['five_star']) ;
+                                            // echo $star;
+                                            $star = round($star);
+                                            
+                                          
+                                            
+                                            if ($star == 1) {
+                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                                 <i class="fas fa-star"></i>
+                                                  <i class="fas fa-star"></i>
+                                                   <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>';
+                                            }
+                                            if ($star == 2) {
+                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
                                                         <i class="home-product-item__star-gold fas fa-star"></i>
-                                                        <i class="home-product-item__star-gold fas fa-star"></i>
-                                                        <i class="home-product-item__star-gold fas fa-star"></i>
-                                                        <i class="home-product-item__star-gold fas fa-star"></i>
-                                                        <i class="fas fa-star"></i>
-                                                    </div>
+                                                         <i class="fas fa-star"></i>
+                                                          <i class="fas fa-star"></i>
+                                                           <i class="fas fa-star"></i>';
+                                            }
+                                            if ($star == 3) {
+                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                                            <i class="home-product-item__star-gold fas fa-star"></i>        
+                                                            <i class="home-product-item__star-gold fas fa-star"></i>
+                                                             <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>'. $star.'/5';
+                                             
+                                            }
+                                            if ($star == 4) {
+                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                                                    <i class="home-product-item__star-gold fas fa-star"></i> 
+                                                                    <i class="home-product-item__star-gold fas fa-star"></i>       
+                                                                    <i class="home-product-item__star-gold fas fa-star"></i>
+                                                                     <i class="fas fa-star"></i>';
+                                            }
+                                            if ($star == 5) {
+                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                                <i class="home-product-item__star-gold fas fa-star"></i>
+                                                                            <i class="home-product-item__star-gold fas fa-star"></i> 
+                                                                           <i class="home-product-item__star-gold fas fa-star"></i>       
+                                                                            <i class="home-product-item__star-gold fas fa-star"></i>';
+                                                echo $start;
+                                                echo "/5";
+                                            }
+                                            // echo'    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //             <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //             <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //             <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //             <i class="fas fa-star"></i>';
+                                            echo '   </div>    
                                                     <span class="home-product-item__sold">88 đã bán </span>
                                                 </div>
     
@@ -757,7 +817,8 @@ if ($result2 = $con->query($sql1)) {
                                 <a href="" class="auth-form__help-link auth-form__help-link-forgot">Quên mật khẩu</a>
                                 <span class="auth-form__help-separate"> </span>
                                 <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
-                                <p><input type="hidden" value="<?php $uri = $_SERVER['REQUEST_URI']; echo $uri; ?>" name="url"></p>
+                                <p><input type="hidden" value="<?php $uri = $_SERVER['REQUEST_URI'];
+                                                                echo $uri; ?>" name="url"></p>
                             </div>
                         </div>
                         <div class="auth-form__controls">
@@ -907,8 +968,6 @@ if ($result2 = $con->query($sql1)) {
                         <div class="contentcart__heading-close" id="close">
                             <i class="contentcart__heading-close-icon fas fa-times" onclick="closeModalPayinCart()"></i>
                         </div>
-
-
                     </div>
                     <div class="form__pay-content">
                         <div class="form__pay-address">
