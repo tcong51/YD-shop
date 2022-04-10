@@ -80,7 +80,6 @@ function checkComment() {
         document.getElementById('showModalnotificationCart').style.display = 'none';
         document.getElementById('showModalCart').style.display = 'none';
         document.getElementById('showModalLogin').style.display = 'none';
-
         // document.getElementById('showModalCart').style.display = 'none';
         ok = false;
     }
@@ -90,14 +89,14 @@ function checkComment() {
             document.getElementById('showModalnotificationCart').style.display = 'none';
             document.getElementById('showModalCart').style.display = 'none';
             document.getElementById('showModalLogin').style.display = 'none';
-            // document.getElementById('showModalCart').style.display = 'none';
+            document.getElementById('showModalCart').style.display = 'none';
             ok = false;
         } 
     }}
     return ok;
 }
 function closeModalCart() {
-    document.getElementById('showComment').style.display = 'none';
+ 
     document.getElementById('showModalnotificationCart').style.display = 'none';
     document.getElementById('showModal').style.display = 'none';
     document.getElementById('showModalCart').style.display = 'none';

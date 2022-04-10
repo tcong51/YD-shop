@@ -16,7 +16,7 @@ if (isset($_SESSION['email'])) {
     $signup = "";
     $tb = "";
 } else {
-    echo "<p style='color:red' font-size:20px;> Vui lòng đăng nhập để mua sản phẩm</p> ";
+    // echo "<p style='color:red' font-size:20px;> Vui lòng đăng nhập để mua sản phẩm</p> ";
 }
 ?>
 <?php
@@ -410,23 +410,52 @@ if ($result2 = $con->query($sql1)) {
                                 // $query_lietke_sanpham = mysqli_query($con,$qr);
                                 $qr = "SELECT * FROM sanpham,loaisanpham
                             WHERE sanpham.maloaiSP = loaisanpham.maloaiSP
-                            LIMIT 0,10";
+                            LIMIT 0,5";
                                 if ($result3 = $con->query($qr)) {
                                     if ($result3->num_rows > 0) {
-                                        function Stariui($star)
-                                        {  $data = '';
-                                            $starTem = round($star, 1);
-                                            $star_check = round($star);
-                                            if ($starTem - $star_check <= 0.4) {
-                                                for ($i = 0; $i < $star_check; $i++) {
-                                                    $data .=  '<i class="home-product-item__star-gold fas fa-star">';
+                                        function printStarVirtual($temp)
+                                        {
+                                            $data = '';
+                                            if ($temp < 2) {
+                                                for ($i = 0; $i < 4; $i++) {
+                                                    $data .= '<i class="fas fa-star"></i>';
                                                 }
-                                            } elseif ($starTem - $star_check > 0.4 && $starTem - $star_check <= 0.9) {
-                                                for ($i = 0; $i < $star_check; $i++) {
-                                                    $data .= '<i class="home-product-item__star-gold fas fa-star">';
+                                            } elseif ($temp > 2 && $temp < 3) {
+                                                for ($i = 0; $i < 3; $i++) {
+                                                    $data .= '<i class="fas fa-star"></i>';
                                                 }
-                                                $data .= '<i class="fas fa-star"></i>';
                                             }
+
+                                            return $data;
+                                        }
+                                        function printStarReal($temp)
+                                        {
+                                            $run = round($temp);
+                                            $data = '';
+                                            if ($run - $temp > 0) {
+                                                for ($i = 1; $i <= $run - 1; $i++) {
+                                                    $data .= '<i class="home-product-item__star-gold fas fa-star"></i>';
+                                                }
+                                            } else {
+                                                for ($i = 1; $i <= $run; $i++) {
+                                                    $data .= '<i class="home-product-item__star-gold fas fa-star"></i>';
+                                                }
+                                            }
+                                            // return $run;
+
+                                            return $data;
+                                        }
+                                        function echoStar($temp)
+                                        {
+                                            // return $temp;
+                                            $star_all = round($temp);
+                                            $result_sub = $star_all - $temp;
+                                            // return $result_sub;
+                                            $data = '';
+                                            $data = printStarReal($temp);
+                                            $data .= printStarVirtual($temp);
+
+
                                             return $data;
                                         }
                                         while ($row2 = $result3->fetch_assoc()) {
@@ -449,67 +478,68 @@ if ($result2 = $con->query($sql1)) {
                                                         <i class="home-product-item__like-icon-fill fas fa-heart" ></i>
                                                     </span>
                                                     <div class="home-product-item__rating">';
-                                            
-                                            $star = ($row2['one_star'] * 1 + $row2['second_star'] * 2 + $row2['third_star'] * 3 + $row2['four_star'] * 4 + $row2['five_star'] * 5) / ($row2['one_star']+ $row2['second_star']+ $row2['third_star']+ $row2['four_star']+ $row2['five_star']) ;
+
+                                            $star = ($row2['one_star'] * 1 + $row2['second_star'] * 2 + $row2['third_star'] * 3 + $row2['four_star'] * 4 + $row2['five_star'] * 5) / 15;
                                             // echo $star;
-                                            $star = round($star);
-                                            
-                                          
-                                            
-                                            if ($star == 1) {
-                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                 <i class="fas fa-star"></i>
-                                                  <i class="fas fa-star"></i>
-                                                   <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>';
-                                            }
-                                            if ($star == 2) {
-                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                        <i class="home-product-item__star-gold fas fa-star"></i>
-                                                         <i class="fas fa-star"></i>
-                                                          <i class="fas fa-star"></i>
-                                                           <i class="fas fa-star"></i>';
-                                            }
-                                            if ($star == 3) {
-                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                            <i class="home-product-item__star-gold fas fa-star"></i>        
-                                                            <i class="home-product-item__star-gold fas fa-star"></i>
-                                                             <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>'. $star.'/5';
-                                             
-                                            }
-                                            if ($star == 4) {
-                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                                    <i class="home-product-item__star-gold fas fa-star"></i> 
-                                                                    <i class="home-product-item__star-gold fas fa-star"></i>       
-                                                                    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                                     <i class="fas fa-star"></i>';
-                                            }
-                                            if ($star == 5) {
-                                                echo '    <i class="home-product-item__star-gold fas fa-star"></i>
-                                                <i class="home-product-item__star-gold fas fa-star"></i>
-                                                                            <i class="home-product-item__star-gold fas fa-star"></i> 
-                                                                           <i class="home-product-item__star-gold fas fa-star"></i>       
-                                                                            <i class="home-product-item__star-gold fas fa-star"></i>';
-                                                echo $start;
-                                                echo "/5";
-                                            }
+                                            $star = round($star, 1);
+                                            $tem = echoStar($star);
+                                            echo $tem;
+                                            // if ($star == 1) {
+                                            //     echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //      <i class="fas fa-star"></i>
+                                            //       <i class="fas fa-star"></i>
+                                            //        <i class="fas fa-star"></i>
+                                            //         <i class="fas fa-star"></i>';
+                                            // }
+                                            // if ($star == 2) {
+                                            //     echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //             <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //              <i class="fas fa-star"></i>
+                                            //               <i class="fas fa-star"></i>
+                                            //                <i class="fas fa-star"></i>';
+                                            // }
+                                            // if ($star == 3) {
+                                            //     echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //                 <i class="home-product-item__star-gold fas fa-star"></i>        
+                                            //                 <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //                  <i class="fas fa-star"></i>
+                                            //                 <i class="fas fa-star"></i> ';
+
+                                            // }
+                                            // if ($star == 4) {
+                                            //     echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //                         <i class="home-product-item__star-gold fas fa-star"></i> 
+                                            //                         <i class="home-product-item__star-gold fas fa-star"></i>       
+                                            //                         <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //                          <i class="fas fa-star"></i> ';
+                                            // }
+                                            // if ($star == 5) {
+                                            //     echo '    <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //     <i class="home-product-item__star-gold fas fa-star"></i>
+                                            //                                 <i class="home-product-item__star-gold fas fa-star"></i> 
+                                            //                                <i class="home-product-item__star-gold fas fa-star"></i>       
+                                            //                                 <i class="home-product-item__star-gold fas fa-star"> </i> ';  
+                                            // }
                                             // echo'    <i class="home-product-item__star-gold fas fa-star"></i>
                                             //             <i class="home-product-item__star-gold fas fa-star"></i>
                                             //             <i class="home-product-item__star-gold fas fa-star"></i>
                                             //             <i class="home-product-item__star-gold fas fa-star"></i>
                                             //             <i class="fas fa-star"></i>';
-                                            echo '   </div>    
-                                                    <span class="home-product-item__sold">88 đã bán </span>
+                                            echo '</div>    
+                                                <span> &nbsp';
+                                            if ($star > 5) {
+                                                echo '5';
+                                            } else {
+                                                echo $star;
+                                            }
+                                            echo '/5</span>
                                                 </div>
     
                                                 <div class="home-product-item__origin">
                                                     <span class="home-product-item__brand"> <!-- thương hiệu sản phẩm -->
                                                     ' . $row2['thuonghieu'] . '
                                                     </span> 
-                                                    <span class="home-product-item__origin-name"><!-- nước xuất sứ nguồn gốc -->
-                                                    ' . $row2['quocgia'] . '
-                                                    </span>
+                                                    <span class="home-product-item__sold">88 đã bán </span>
                                                 </div>
                                                 <div class="home-product-item__favourite"><!-- yêu thích -->
                                                     <i class="fas fa-check"></i>
@@ -1111,6 +1141,28 @@ if ($result2 = $con->query($sql1)) {
 
                     </div> -->
 
+        </div>
+        <!-- Comment -->
+        <div class="pay" id="showCommentComplete" style="display: none">
+            <div class="form__pay">
+                <div class="form__pay-heading">
+                    <span class="form__pay-heading-title">
+                        <i class="form__pay-heading-title-icon fas fa-bell"></i>
+                        <p class="form__pay-heading-text">Thông báo</p>
+                    </span>
+                    <div class="contentcart__heading-close" id="close">
+                        <i class="contentcart__heading-close-icon fas fa-times" onclick="closeModalPayinCart()"></i>
+                    </div>
+                </div>
+                <div class="form__pay-content">
+                    <div class="form__pay-address">
+                        <div class="form__pay-address-text-notification">
+                            Cảm ơn quý khách đã bình luận!
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Lỗi bình luận -->
         <div class="pay" id="showComment" style="display: none">

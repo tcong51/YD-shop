@@ -9,9 +9,9 @@
     $result = $con->query($sqlcmt);
     if ($result == 1) {
         echo "<script type='text/javascript'> alert('Bình luận sẽ được admin kiểm duyệt! Cảm ơn bạn!');</script>";
-        echo "<script type='text/javascript'> window.location.replace('/YD-shop');</script>";
+        echo "<script type='text/javascript'> window.location.replace('$uri');</script>";
     } else {
         echo "<script type='text/javascript'> alert('Bình luận không thể gửi đi!');</script>";
-        echo "<script type='text/javascript'> window.location.replace('/YD-shop');</script>";
+        echo "<script type='text/javascript'> window.location.replace('$uri');</script>";
     }
     ?>

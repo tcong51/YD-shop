@@ -17,4 +17,3 @@
     }else{
         header ("Location: $uri");
     }
-?>
