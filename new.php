@@ -16,7 +16,7 @@ if (isset($_SESSION['email'])) {
     $signup = "";
     $tb = "";
 } else {
-    //    echo"<p style='color:red' font-size:20/>px;> Vui lòng đăng nhập để mua sản phẩm</p> ";
+    //    echo"<p style='color:red' font-size:20/> Vui lòng đăng nhập để mua sản phẩm</p> ";
 }
 ?>
 <?php

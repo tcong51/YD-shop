@@ -2,6 +2,7 @@
     session_start();
     require "connect.php";
     $uri = $_POST['url'];
+    // echo $uri;
     $email =$_POST['email'];
     $pwd =$_POST['password'];
     $pwdMd5 =md5($pwd);
@@ -14,6 +15,10 @@
         $_SESSION['email'] = $email;
         $_SESSION['id_tk'] = $row_data['id'];
         header("Location: $uri");
+        // echo $uri;
     }else{
+        $_SESSION['email'] = '';
+        $_SESSION['id_tk'] = '';
         header ("Location: $uri");
+        // echo $uri;
     }

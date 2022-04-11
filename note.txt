@@ -1,36 +1,44 @@
 ===================================================
 //TODO
 ===================================================
-Đăng nhập chưa xử lý.
-Thêm vào giỏ hàng chưa xử lý.
-Đặt hàng cần xử lý. ( show số lượng -> thanh toán).
-Địa chỉ thay đổi.
-New đặt hàng lỗi
-Trang chợ giúp chưa có.
-Giỏ hàng -> đặt hàng. action!!!!
-Phân trang lỗi.
+
 ==============================
 ** Trang chưa login **
 ==============================
 //**  index **//
-
-//**  index **//
+Phân trang.(Theo từng trang danh mục)
+Chưa có tìm kiếm
+Danh mục chưa sửa (fix)
 ------------------------------
 //**  product **//
+------------------------------
+//**  new **//
+Giỏ hàng lỗi
+Đăng nhập lỗi
+Đăng ký lỗi
 
-//**  product **//
-Phân trang lỗi. (Theo từng trang danh mục)
-Danh mục chưa sửa (fix)
-Chưa có tìm kiếm
+------------------------------
+//**  selling **//
+Giỏ hàng lỗi
+Đăng nhập lỗi
+Dòng vui lòng....
+
 ==============================
 ** Trang đã login **
 ==============================
 //**  index **//
+Danh mục chưa sửa
 
 //**  index **//
+
+------------------------------
+//**  new **//
+Giỏ hàng lỗi
+//**  new **//
+
 ------------------------------
 //**  product **//
-
+Bình luận nhảy lỗi
 //**  product **//
 
 ===================================================

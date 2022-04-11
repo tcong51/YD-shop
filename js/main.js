@@ -1,9 +1,9 @@
 // hiển thi form đăng nhập
 function showModalLogin() {
-    document.getElementById('showModalnotificationCart').style.display = 'none';
     document.getElementById('showModal').style.display = 'flex';
     document.getElementById('showModalLogin').style.display = 'block';
-    document.getElementById('showModalnotificationPay').style.display = 'none';
+    // document.getElementById('showModalnotificationPay').style.display = 'none';
+    // document.getElementById('showModalnotificationCart').style.display = 'none';
     // document.getElementById('showModalnotificationPay').style.display = 'none';
     
 }
@@ -60,7 +60,7 @@ function showModalCart() {
         document.getElementById('showModalPayinCart').style.display = 'none';
         
     } else {
-        document.getElementById('showModalnotificationCart').style.display = 'block';
+        // document.getElementById('showModalnotificationCart').style.display = 'block';
         document.getElementById('showComment').style.display = 'none';
         document.getElementById('showModalPayinCart').style.display = 'none';
     }
